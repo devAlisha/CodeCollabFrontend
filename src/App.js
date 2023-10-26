@@ -31,7 +31,7 @@ import {
   FiMenu,
 } from 'react-icons/fi'
 import Editor from '@monaco-editor/react';
-const socket = io('http://localhost:8000');
+const socket = io('https://codecollabbackend.azurewebsites.net/');
 function App() {
   const [text, setText] = useState('');
   const [currentRoom, setCurrentRoom] = useState('');
