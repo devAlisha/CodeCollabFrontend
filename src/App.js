@@ -21,6 +21,7 @@ import {
   Button,
   Alert,
   AlertIcon,
+  Card,
 } from '@chakra-ui/react'
 import {
   FiHome,
@@ -31,7 +32,7 @@ import {
   FiMenu,
 } from 'react-icons/fi'
 import Editor from '@monaco-editor/react';
-const socket = io('https://codecollabbackend.azurewebsites.net/');
+const socket = io('https://codecollabbackend-vvkh.onrender.com');
 function App() {
   const [text, setText] = useState('');
   const [currentRoom, setCurrentRoom] = useState('');
@@ -40,13 +41,6 @@ function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const LinkItems = [
-    { name: 'Home', icon: FiHome },
-    { name: 'Trending', icon: FiTrendingUp },
-    { name: 'Explore', icon: FiCompass },
-    { name: 'Favourites', icon: FiStar },
-    { name: 'Settings', icon: FiSettings },
-  ];
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   useEffect(() => {
@@ -148,9 +142,9 @@ function App() {
           <Box>
             Password: {password}
           </Box>
-          <Box cursor={'pointer'} onClick={leaveRoom}>
+          <Button colorScheme='red' variant={'outline'} cursor={'pointer'} onClick={leaveRoom}>
             Leave Room
-          </Box>
+          </Button>
 
         </Stack>
         <Text fontWeight={'500'} fontSize={'lg'} mx={8} mb={1} mt={8}>
@@ -162,8 +156,6 @@ function App() {
             usersInRoom.map((user) => (
               <Box
                 key={user.id}
-                as="a"
-                href="#"
                 mt={2}
                 style={{ textDecoration: 'none' }}
                 _focus={{ boxShadow: 'none' }}>
@@ -172,7 +164,6 @@ function App() {
                   p="3"
                   borderRadius="md"
                   role="group"
-                  cursor="pointer"
                   bg={'gray.800'}
                   color={'white'}
                 >
@@ -237,11 +228,10 @@ function App() {
               <Heading fontSize={'4xl'}>Code Collab</Heading>
               <Heading fontSize={'lg'}>Create Room or Join Room</Heading>
             </Stack>
-            <Box
-              rounded={'lg'}
-              boxShadow={'lg'}
+            <Card
+              rounded={'xl'}
               p={8}
-              bg={'whiteAlpha.100'}
+              bg={'whiteAlpha.300'}
             >
               <Stack spacing={2}>
                 <FormLabel >Username</FormLabel>
@@ -283,7 +273,7 @@ function App() {
                 {error}
               </Alert>}
 
-            </Box>
+            </Card>
           </Stack>
         </Flex>)
       }
